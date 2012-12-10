@@ -62,3 +62,10 @@ rm -rf %{buildroot}
 %{_localstatedir}/log/merlin
 %config(noreplace)%{_sysconfdir}/merlin.conf
 
+
+
+%changelog
+* Sat Jan 01 2011 Guillaume Rousse <guillomovitch@mandriva.org> 0.9.0-1mdv2011.0
++ Revision: 627283
+- import merlin
+
