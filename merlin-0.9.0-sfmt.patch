@@ -1,0 +1,44 @@
+diff -urN merlin-0.9.0/test_utils.c merlin-0.9.0-patched/test_utils.c
+--- merlin-0.9.0/test_utils.c	2010-11-02 00:27:11.000000000 +1000
++++ merlin-0.9.0-patched/test_utils.c	2014-03-18 23:06:39.387073952 +1100
+@@ -94,11 +94,11 @@
+ int ok_int(int a, int b, const char *name)
+ {
+ 	if (a == b) {
+-		t_pass(name);
++		t_pass("%s", name);
+ 		return TEST_PASS;
+ 	}
+ 
+-	t_fail(name);
++	t_fail("%s", name);
+ 	t_diag("%d != %d", a, b);
+ 	return TEST_FAIL;
+ }
+@@ -107,10 +107,10 @@
+ {
+ 	if (a == b) {
+ 		return TEST_PASS;
+-		t_pass(name);
++		t_pass("%s", name);
+ 	}
+ 
+-	t_fail(name);
++	t_fail("%s", name);
+ 	t_diag("%u != %d", a, b);
+ 	return TEST_FAIL;
+ }
+@@ -118,11 +118,11 @@
+ int ok_str(const char *a, const char *b, const char *name)
+ {
+ 	if ((!a && !b) || (a && b && !strcmp(a, b))) {
+-		t_pass(name);
++		t_pass("%s", name);
+ 		return TEST_PASS;
+ 	}
+ 
+-	t_fail(name);
++	t_fail("%s", name);
+ 	t_diag("'%s' != '%s'", a, b);
+ 	return TEST_FAIL;
+ }

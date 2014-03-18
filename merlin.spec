@@ -1,13 +1,13 @@
+Summary:	Nagios distributed monitoring
 Name:		merlin
 Version:	0.9.0
-Release:	%mkrel 1
-Summary:	Nagios distributed monitoring
+Release:	2
 License:	BSD
 Group:		Networking/Other
-URL:		www.op5.org/community/plugin-inventory/op5-projects/merlin
-Source:     http://op5.org/op5media/op5.org/downloads/merlin-%{version}.tar.gz
-BuildRequires: dbi-devel
-BuildRoot:	%{_tmppath}/%{name}-%{version}
+Url:		http://www.op5.org/community/plugin-inventory/op5-projects/merlin
+Source0:	http://op5.org/op5media/op5.org/downloads/merlin-%{version}.tar.gz
+Patch0:		merlin-0.9.0-sfmt.patch
+BuildRequires:	dbi-devel
 
 %description
 The Merlin project, or Module for Effortless Redundancy and Loadbalancing In
@@ -20,15 +20,24 @@ storing the status information in a database, fault tolearance and some other
 cool things. This means that Merlin now are responsible for providing status
 data, acting as a backend, for the Ninja GUI.
 
+%files
+%doc TECHNICAL SPECS README HOWTO COPYING
+%{_initrddir}/merlind
+%{_libdir}/merlin
+%{_localstatedir}/lib/merlin
+%{_localstatedir}/log/merlin
+%config(noreplace)%{_sysconfdir}/merlin.conf
+
+#----------------------------------------------------------------------------
+
 %prep
 %setup -q
+%patch0 -p1
 
 %build
-%make
+%make CFLAGS="%{optflags}"
 
 %install
-rm -rf %{buildroot}
-
 install -d -m 755 %{buildroot}%{_libdir}/merlin
 install -m 755 import showlog merlind %{buildroot}%{_libdir}/merlin
 install -m 644 merlin.so import.php object_importer.inc.php %{buildroot}%{_libdir}/merlin
@@ -50,22 +59,4 @@ perl -pi \
     -e 's|^CONFIG_FILE=.*|CONFIG_FILE=%{_sysconfdir}/merlin.conf|;' \
     %{buildroot}%{_initrddir}/merlind
 
-%clean
-rm -rf %{buildroot}
-
-%files
-%defattr(-,root,root)
-%doc TECHNICAL SPECS README HOWTO COPYING
-%{_initrddir}/merlind
-%{_libdir}/merlin
-%{_localstatedir}/lib/merlin
-%{_localstatedir}/log/merlin
-%config(noreplace)%{_sysconfdir}/merlin.conf
-
-
-
-%changelog
-* Sat Jan 01 2011 Guillaume Rousse <guillomovitch@mandriva.org> 0.9.0-1mdv2011.0
-+ Revision: 627283
-- import merlin
 
