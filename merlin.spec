@@ -1,7 +1,7 @@
 Summary:	Nagios distributed monitoring
 Name:		merlin
 Version:	0.9.0
-Release:	2
+Release:	3
 License:	BSD
 Group:		Networking/Other
 Url:		http://www.op5.org/community/plugin-inventory/op5-projects/merlin
