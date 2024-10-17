@@ -4,7 +4,7 @@ Version:	0.9.0
 Release:	3
 License:	BSD
 Group:		Networking/Other
-Url:		http://www.op5.org/community/plugin-inventory/op5-projects/merlin
+Url:		https://www.op5.org/community/plugin-inventory/op5-projects/merlin
 Source0:	http://op5.org/op5media/op5.org/downloads/merlin-%{version}.tar.gz
 Patch0:		merlin-0.9.0-sfmt.patch
 BuildRequires:	dbi-devel
