@@ -7,6 +7,7 @@ Group:		Networking/Other
 Url:		https://www.op5.org/community/plugin-inventory/op5-projects/merlin
 Source0:	http://op5.org/op5media/op5.org/downloads/merlin-%{version}.tar.gz
 Patch0:		merlin-0.9.0-sfmt.patch
+BuildRequires:	make
 BuildRequires:	dbi-devel
 
 %description
